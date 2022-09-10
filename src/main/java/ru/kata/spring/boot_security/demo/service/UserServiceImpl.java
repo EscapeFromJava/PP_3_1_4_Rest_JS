@@ -1,9 +1,6 @@
 package ru.kata.spring.boot_security.demo.service;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.kata.spring.boot_security.demo.dao.UserDao;
@@ -16,10 +13,6 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private final UserDao userDao;
-
-    private final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
-
-
     public UserServiceImpl(UserDao userDao) {
         this.userDao = userDao;
     }
@@ -33,6 +26,11 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public User findUserByLogin(String login) {
         return userDao.findUserByLogin(login);
+    }
+
+    @Override
+    public User findUserByEmail(String email) {
+        return userDao.findUserByEmail(email);
     }
 
     @Override
@@ -61,8 +59,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public UserDetails loadUserByUsername(String username) {
-        User userByLogin = userDao.findUserByLogin(username);
-        return new org.springframework.security.core.userdetails.User(userByLogin.getUsername(), userByLogin.getPassword(), userByLogin.getAuthorities());
+    public UserDetails loadUserByUsername(String email) {
+        User userByLogin = userDao.findUserByEmail(email);
+        return new org.springframework.security.core.userdetails.User(userByLogin.getEmail(), userByLogin.getPassword(), userByLogin.getAuthorities());
     }
+
 }
