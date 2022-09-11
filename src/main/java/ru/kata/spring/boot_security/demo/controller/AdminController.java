@@ -1,6 +1,7 @@
 package ru.kata.spring.boot_security.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,14 +19,16 @@ public class AdminController {
     }
 
     @GetMapping("/users")
-    public String getAllUsers(Model model) {
+    public String getAllUsers(@ModelAttribute("newUser") User user, Authentication authentication, Model model) {
+        model.addAttribute("authUser", userService.findUserByEmail(authentication.getName()));
         model.addAttribute("users", userService.getAllUsers());
-        return "index";
+        return "admin";
     }
 
-    @GetMapping("new")
-    public String newUser(@ModelAttribute("newUser") User user) {
-        return "new";
+    @GetMapping("/{id}")
+    public String getUserById(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("user", userService.getUser(id));
+        return "admin";
     }
 
     @PostMapping("new")

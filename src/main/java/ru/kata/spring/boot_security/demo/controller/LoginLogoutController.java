@@ -21,6 +21,6 @@ public class LoginLogoutController {
         if (authentication != null) {
             request.getSession().invalidate();
         }
-        return "/login";
+        return "login";
     }
 }
