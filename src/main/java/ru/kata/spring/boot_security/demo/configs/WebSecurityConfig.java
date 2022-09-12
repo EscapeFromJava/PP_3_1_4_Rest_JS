@@ -7,21 +7,21 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.service.UserService;
-import ru.kata.spring.boot_security.demo.util.UserGenerator;
+import ru.kata.spring.boot_security.demo.service.UtilService;
 
 import javax.annotation.PostConstruct;
-import java.util.List;
 
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final SuccessUserHandler successUserHandler;
     private final UserService userService;
+    private final UtilService utilService;
 
-    public WebSecurityConfig(SuccessUserHandler successUserHandler, UserService userService) {
+    public WebSecurityConfig(SuccessUserHandler successUserHandler, UserService userService, UtilService utilService) {
         this.successUserHandler = successUserHandler;
         this.userService = userService;
+        this.utilService = utilService;
     }
 
     @Override
@@ -33,16 +33,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest()
                 .authenticated()
                 .and()
-                .formLogin().loginPage("/login")
-                .usernameParameter("email")
+                .formLogin().usernameParameter("email")
                 .successHandler(successUserHandler).permitAll()
                 .and()
-                .logout()
-//                .logoutUrl("/logout")
-//                .logoutSuccessUrl("/login")
-//                .logoutSuccessUrl("/login")
-//                .permitAll()
-                .invalidateHttpSession(true)
+                .logout().logoutSuccessUrl("/login").invalidateHttpSession(true)
                 .clearAuthentication(true)
                 .deleteCookies("JSESSIONID")
         ;
@@ -63,6 +57,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @PostConstruct
     public void addUsersWithRoles() {
-        UserGenerator.createUsersWithRoles().forEach(userService::saveUser);
+        utilService.generateStartRoles();
+        utilService.generateStartUsers();
     }
 }
