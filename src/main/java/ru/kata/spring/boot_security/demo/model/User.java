@@ -31,7 +31,7 @@ public class User implements UserDetails {
     private String lastName;
     @Column(name = "age")
     private int age;
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
     @JoinTable(
             name = "user_role"
             , joinColumns = @JoinColumn(name = "user_id")
