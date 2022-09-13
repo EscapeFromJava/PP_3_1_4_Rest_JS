@@ -15,10 +15,10 @@
             <div class="row">
                 <div class="col-11 mt-2 ps-4">
                     <h6>
-                        <th:block th:text="${user.email}"/>
+                        <th:block th:text="${user.getEmail()}"/>
                         with roles:
-                        <th:block th:each="role : ${user.roles}">
-                            <th:block th:text="${role.role}"/>
+                        <th:block th:each="role : ${user.getRoles()}">
+                            <th:block th:text="${role.getRole()}"/>
                         </th:block>
                     </h6>
                 </div>
@@ -75,23 +75,23 @@
                                         <tbody>
                                         <tr>
                                             <td>
-                                                <th:block th:text="${user.id}"/>
+                                                <th:block th:text="${user.getId()}"/>
                                             </td>
                                             <td>
-                                                <th:block th:text="${user.firstName}"/>
+                                                <th:block th:text="${user.getFirstName()}"/>
                                             </td>
                                             <td>
-                                                <th:block th:text="${user.lastName}"/>
+                                                <th:block th:text="${user.getLastName()}"/>
                                             </td>
                                             <td>
-                                                <th:block th:text="${user.age}"/>
+                                                <th:block th:text="${user.getAge()}"/>
                                             </td>
                                             <td>
-                                                <th:block th:text="${user.email}"/>
+                                                <th:block th:text="${user.getEmail()}"/>
                                             </td>
                                             <td>
-                                                <th:block th:each="role : ${user.roles}">
-                                                    <th:block th:text="${role.role}"/>
+                                                <th:block th:each="role : ${user.getRoles()}">
+                                                    <th:block th:text="${role.getRole()}"/>
                                                 </th:block>
                                             </td>
                                         </tr>
