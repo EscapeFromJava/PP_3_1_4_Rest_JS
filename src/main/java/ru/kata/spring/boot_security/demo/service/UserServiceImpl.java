@@ -3,7 +3,6 @@ package ru.kata.spring.boot_security.demo.service;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import ru.kata.spring.boot_security.demo.dao.RoleDao;
 import ru.kata.spring.boot_security.demo.dao.UserDao;
 import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
@@ -35,44 +34,31 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public void saveUser(User user) {
-        List<String> allRolesFromDataBaseString = roleService.getRoles()
-                .stream()
-                .map(Role::getRole)
-                .toList();
-        List<Role> newRoles = new ArrayList<>();
-        for (Role role : user.getRoles()) {
-            if (allRolesFromDataBaseString.contains(role.getRole())){
-                newRoles.add(roleService.findRoleByName(role.getRole()));
-            }
-        }
-        user.setRoles(newRoles);
-        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-        userDao.saveUser(user);
-    }
-
-    @Override
-    @Transactional
     public void deleteUser(Long id) {
         userDao.deleteUser(id);
     }
 
     @Override
     @Transactional
-    public void updateUser(User user) {
+    public void saveOrUpdate(User user) {
         List<String> allRolesFromDataBaseString = roleService.getRoles()
                 .stream()
                 .map(Role::getRole)
                 .toList();
         List<Role> newRoles = new ArrayList<>();
         for (Role role : user.getRoles()) {
-            if (allRolesFromDataBaseString.contains(role.getRole())){
+            if (allRolesFromDataBaseString.contains(role.getRole())) {
                 newRoles.add(roleService.findRoleByName(role.getRole()));
             }
         }
         user.setRoles(newRoles);
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-        userDao.updateUser(user);
+
+        if (user.getId() == null) {
+            userDao.saveUser(user);
+        } else {
+            userDao.updateUser(user);
+        }
     }
 
     @Override

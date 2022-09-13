@@ -33,15 +33,15 @@ public class UtilServiceImpl implements UtilService {
     @Transactional
     public void generateStartUsers() {
         User user1 = new User("user1@gmail.com", "user1", "user1", "user1", 31, new ArrayList<>(List.of(new Role("USER"))));
-        userService.saveUser(user1);
+        userService.saveOrUpdate(user1);
 
         User user2 = new User("user2@gmail.com", "user2", "user2", "user2", 32, new ArrayList<>(List.of(new Role("USER"))));
-        userService.saveUser(user2);
+        userService.saveOrUpdate(user2);
 
         User admin = new User("admin@gmail.com", "admin", "admin", "admin", 32, new ArrayList<>(List.of(new Role("ADMIN"))));
-        userService.saveUser(admin);
+        userService.saveOrUpdate(admin);
 
         User adminuser = new User("adminuser@gmail.com", "adminuser", "adminuser", "adminuser", 32, new ArrayList<>(List.of(new Role("ADMIN"), new Role("USER"))));
-        userService.saveUser(adminuser);
+        userService.saveOrUpdate(adminuser);
     }
 }

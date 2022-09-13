@@ -29,13 +29,13 @@ public class AdminController {
 
     @PostMapping("/new")
     public String addUser(@ModelAttribute("newUser") User newUser) {
-        userService.saveUser(newUser);
+        userService.saveOrUpdate(newUser);
         return "redirect:/admin";
     }
 
     @PostMapping("/edit")
     public String update(@ModelAttribute("user") User user) {
-        userService.updateUser(user);
+        userService.saveOrUpdate(user);
         return "redirect:/admin";
     }
 
