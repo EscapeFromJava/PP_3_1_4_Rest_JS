@@ -57,7 +57,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return authenticationProvider;
     }
 
-//    @PostConstruct
+    @PostConstruct
     public void addUsersWithRoles() {
         utilService.generateStartRoles();
         utilService.generateStartUsers();
