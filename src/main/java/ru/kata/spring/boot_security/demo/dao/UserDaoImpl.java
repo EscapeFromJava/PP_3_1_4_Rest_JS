@@ -41,4 +41,9 @@ public class UserDaoImpl implements UserDao {
                 .setParameter("email", email)
                 .getSingleResult();
     }
+
+    @Override
+    public User findUserById(Long id) {
+        return id != null ? entityManager.find(User.class, id) : new User();
+    }
 }

@@ -1,7 +1,10 @@
 package ru.kata.spring.boot_security.demo.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.kata.spring.boot_security.demo.dao.UserDao;
 import ru.kata.spring.boot_security.demo.model.Role;
@@ -52,11 +55,17 @@ public class UserServiceImpl implements UserService {
             }
         }
         user.setRoles(newRoles);
-        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+
+        String currentPassword = user.getPassword();
+        String passwordFromDataBase = userDao.findUserById(user.getId()).getPassword();
 
         if (user.getId() == null) {
+            user.setPassword(new BCryptPasswordEncoder().encode(currentPassword));
             userDao.saveUser(user);
         } else {
+            if (!currentPassword.equals(passwordFromDataBase)) {
+                user.setPassword(new BCryptPasswordEncoder().encode(currentPassword));
+            }
             userDao.updateUser(user);
         }
     }
