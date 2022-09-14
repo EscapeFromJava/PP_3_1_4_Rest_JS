@@ -28,18 +28,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests()
-                .antMatchers("/user/**").hasAnyAuthority("USER", "ADMIN")
-                .antMatchers("/admin/**").hasAuthority("ADMIN")
-                .anyRequest()
-                .authenticated()
-                .and()
-                .formLogin().usernameParameter("email")
-                .successHandler(successUserHandler).permitAll()
-                .and()
-                .logout().logoutSuccessUrl("/login").invalidateHttpSession(true)
-                .clearAuthentication(true)
-                .deleteCookies("JSESSIONID")
+//                .authorizeRequests()
+//                .antMatchers("/user/**").hasAnyAuthority("USER", "ADMIN")
+//                .antMatchers("/admin/**").hasAuthority("ADMIN")
+//                .anyRequest()
+//                .authenticated()
+//                .and()
+//                .formLogin().usernameParameter("email")
+//                .successHandler(successUserHandler).permitAll()
+//                .and()
+//                .logout().logoutSuccessUrl("/login").invalidateHttpSession(true)
+//                .clearAuthentication(true)
+//                .deleteCookies("JSESSIONID")
+                .csrf().disable()
         ;
     }
 
@@ -56,7 +57,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return authenticationProvider;
     }
 
-    @PostConstruct
+//    @PostConstruct
     public void addUsersWithRoles() {
         utilService.generateStartRoles();
         utilService.generateStartUsers();
