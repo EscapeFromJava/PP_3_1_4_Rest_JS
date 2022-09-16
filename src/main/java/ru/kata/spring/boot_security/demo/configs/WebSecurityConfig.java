@@ -1,7 +1,6 @@
 package ru.kata.spring.boot_security.demo.configs;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -28,19 +27,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-//                .authorizeRequests()
-//                .antMatchers("/user/**").hasAnyAuthority("USER", "ADMIN")
-//                .antMatchers("/admin/**").hasAuthority("ADMIN")
-//                .anyRequest()
-//                .authenticated()
-//                .and()
-//                .formLogin().usernameParameter("email")
-//                .successHandler(successUserHandler).permitAll()
-//                .and()
-//                .logout().logoutSuccessUrl("/login").invalidateHttpSession(true)
-//                .clearAuthentication(true)
-//                .deleteCookies("JSESSIONID")
                 .csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/user/**").hasAnyAuthority("USER", "ADMIN")
+                .antMatchers("/admin/**").hasAuthority("ADMIN")
+                .anyRequest()
+                .authenticated()
+                .and()
+                .formLogin().usernameParameter("email")
+                .successHandler(successUserHandler).permitAll()
+                .and()
+                .logout().logoutSuccessUrl("/login").invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .deleteCookies("JSESSIONID")
         ;
     }
 

@@ -1,50 +1,25 @@
 package ru.kata.spring.boot_security.demo.controller;
 
-import org.springframework.web.bind.annotation.*;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
-import java.util.List;
+import java.security.Principal;
 
 @RestController
 @RequestMapping("/api")
 public class UserRestController {
-
     private final UserService userService;
 
     public UserRestController(UserService userService) {
         this.userService = userService;
     }
 
-    @GetMapping("/users")
-    public List<User> getAllUsers() {
-        return userService.getAllUsers();
-    }
-
-    @GetMapping("/users/{id}")
-    public User getUserById(@PathVariable Long id) {
-        return userService.findUserById(id);
-    }
-
-    @PostMapping("/users")
-    public User saveUser(@RequestBody User user) {
-        userService.saveOrUpdate(user);
-        return user;
-    }
-
-    @PutMapping("/users")
-    public User updateUser(@RequestBody User user) {
-        userService.saveOrUpdate(user);
-        return user;
-    }
-
-    @DeleteMapping("/users/{id}")
-    public String deleteUserById(@PathVariable Long id) {
-        User user = userService.findUserById(id);
-        if (user == null) {
-            return "User with ID=" + id + " was not found";
-        }
-        userService.deleteUser(id);
-        return "User with ID=" + id + " was deleted";
+    @GetMapping("/user")
+    public User getUserById(Principal principal) {
+        return userService.findUserByEmail(principal.getName());
     }
 }
