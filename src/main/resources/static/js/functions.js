@@ -3,3 +3,12 @@ function sendRequest(method, url, body = null) {
         return response.json()
     })
 }
+
+const on = (element, event, selector, handler) => {
+    element.addEventListener(event, e => {
+        if (e.target.closest(selector)){
+            handler(e)
+        }
+    })
+}
+
