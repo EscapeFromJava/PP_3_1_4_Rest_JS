@@ -19,7 +19,7 @@ public class AdminController {
         this.roleService = roleService;
     }
 
-    @GetMapping
+    @GetMapping()
     public String getAllUsers(@ModelAttribute("newUser") User user, Authentication authentication, Model model) {
         model.addAttribute("authUser", userService.findUserByEmail(authentication.getName()));
         model.addAttribute("users", userService.getAllUsers());

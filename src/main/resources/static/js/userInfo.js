@@ -1,4 +1,4 @@
-const usersTable = document.querySelector("#userTable")
+const usersTable = document.querySelector("#userTableInfo")
 
 sendRequest('GET', "/api/user")
     .then(data => {
