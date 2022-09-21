@@ -1,4 +1,4 @@
-const topBarUserInfo = document.querySelector("#topBarUserInfo")
+const topBar = document.querySelector("#topBar")
 
 function sendRequest(method, url, body = null) {
     return fetch(url).then(response => {
@@ -8,6 +8,6 @@ function sendRequest(method, url, body = null) {
 
 sendRequest('GET', "/api/user")
     .then(data => {
-            topBarUserInfo.innerHTML = `${data["email"]} with roles: ${data["roles"].map(el => el.role)}`
+            topBar.innerHTML = `${data["email"]} with roles: ${data["roles"].map(el => el.role)}`
         }
     )
