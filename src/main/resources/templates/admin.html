@@ -17,7 +17,7 @@
     <!--    Top bar-->
     <div class="row pt-2" style="background-color: #282828">
         <div class="col-11">
-            <h5 style="color:white" id="topBarUserInfo"></h5>
+            <h5 style="color:white" id="topBar"></h5>
         </div>
         <div class="col-1 text-right">
             <button onclick="location.href='/logout'" class="btn btn-link" style="color:gray" type="submit">Logout
@@ -86,11 +86,11 @@
                                     <form id="addForm" class="w-25 text-center">
                                         <h5>First Name</h5>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="userNameAdd">
+                                            <input type="text" class="form-control" id="userFirstNameAdd">
                                         </div>
                                         <h5>Last Name</h5>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="userSurnameAdd">
+                                            <input type="text" class="form-control" id="userLastNameAdd">
                                         </div>
                                         <h5>Age</h5>
                                         <div class="form-group">
@@ -98,7 +98,7 @@
                                         </div>
                                         <h5>Email</h5>
                                         <div class="form-group">
-                                            <input type="email" class="form-control" id="userUsernameAdd" required>
+                                            <input type="email" class="form-control" id="userEmailAdd" required>
                                         </div>
                                         <h5>Password</h5>
                                         <div class="form-group">
@@ -163,33 +163,31 @@
                     <div class="modal-body text-center mx-auto">
                         <h6>ID</h6>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="idEdite" name="idEdite" readonly>
+                            <input type="text" class="form-control" id="idEdit" name="idEdit" readonly>
                         </div>
                         <h6>First Name</h6>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="nameEdite" name="nameEdite">
+                            <input type="text" class="form-control" id="firstNameEdit" name="firstNameEdit">
                         </div>
                         <h6>Last Name</h6>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="surnameEdite" name="surnameEdite">
+                            <input type="text" class="form-control" id="lastNameEdit" name="lastNameEdit">
                         </div>
                         <h6>Age</h6>
                         <div class="form-group">
-                            <input type="number" class="form-control" id="ageEdite" name="ageEdite">
+                            <input type="number" class="form-control" id="ageEdit" name="ageEdit">
                         </div>
                         <h6>Email</h6>
                         <div class="form-group">
-                            <input type="email" class="form-control" id="usernameEdite" name="usernameEdite">
+                            <input type="email" class="form-control" id="emailEdit" name="emailEdit">
                         </div>
                         <h6>Password</h6>
                         <div class="form-group">
-                            <input type="password" class="form-control" id="passwordEdite" name="passwordEdite">
+                            <input type="password" class="form-control" id="passwordEdit" name="passwordEdit">
                         </div>
                         <h6>Role</h6>
-                        <select id="roleAdmin" name="roleAdmin" class="form-select w-100" multiple size="2"
+                        <select id="rolesEdit" name="rolesEdit" class="form-select w-100" multiple size="2"
                                 aria-label="multiple select example" required>
-                            <option value="ADMIN">ADMIN</option>
-                            <option value="USER">USER</option>
                         </select>
                     </div>
                     <div class="modal-footer">
@@ -256,13 +254,17 @@
 <script src="/js/libs/bootstrap4/jquery.min.js"></script>
 <script src="http://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
 <script src="/js/libs/bootstrap5/bootstrap.min.js"></script>
-<script src="/js/urls.js"></script>
-<script src="/js/createUser.js"></script>
-<script src="/js/deleteAndEditeUser.js"></script>
-<script src="/js/infAdmin.js"></script>
-<script src="/js/listUsers.js"></script>
-<script src="/js/infUser.js"></script>
-<script src="/js/topBarUserInfo.js"></script>
+
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>-->
+
+<script src="/js/tools/urls.js"></script>
+<script src="/js/tools/functions.js"></script>
+<script src="/js/tools/topBar.js"></script>
+<script src="/js/admin/usersTable.js"></script>
+<script src="/js/admin/addNewUser.js"></script>
+<script src="/js/admin/editUser.js"></script>
+<script src="/js/admin/deleteUser.js"></script>
+<script src="/js/admin/adminInfo.js"></script>
 
 </body>
 </html>
