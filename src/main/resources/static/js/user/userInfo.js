@@ -1,6 +1,6 @@
 sendRequest("GET", "/api/user")
     .then(data => {
-            document.querySelector("#userTableInfo").innerHTML = `
+            document.querySelector("#userPageInfo").innerHTML = `
                         <tr>
                             <td>${data["id"]}</td>
                             <td>${data["firstName"]}</td>

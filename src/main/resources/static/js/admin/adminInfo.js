@@ -1,6 +1,6 @@
 fetch(urlUser).then(res => {
     res.json().then(data => {
-        document.querySelector("#showInformationAboutAdmin").innerHTML = `   
+        document.querySelector("#adminPageInfo").innerHTML = `   
             <tr>
                 <td>${data["id"]}</td>
                 <td>${data["firstName"]}</td>

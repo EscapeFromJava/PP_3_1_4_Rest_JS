@@ -1,8 +1,9 @@
-fetch(urlUsers).then(res => {
-        res.json().then(data => {
-                let usersTableInfo = "";
-                data.forEach((user) => {
-                    usersTableInfo += `   
+function printUsersTable() {
+    fetch(urlUsers).then(res => {
+            res.json().then(data => {
+                    let usersTableInfo = "";
+                    data.forEach((user) => {
+                        usersTableInfo += `   
                     <tr>
                         <td>${user["id"]}</td>
                         <td>${user["firstName"]}</td>
@@ -14,13 +15,15 @@ fetch(urlUsers).then(res => {
                         <td><button class="btn btn-danger" id="deleteButton">Delete</button></td>                 
                     </tr>
                 `
-                })
-                document.querySelector("#data").innerHTML = usersTableInfo;
-            }
-        )
-    }
-)
+                    })
+                    document.querySelector("#data").innerHTML = usersTableInfo;
+                }
+            )
+        }
+    )
+}
 
+printUsersTable()
 
 
 

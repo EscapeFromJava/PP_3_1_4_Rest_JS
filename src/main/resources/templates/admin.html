@@ -45,9 +45,9 @@
                         <h1>Admin panel</h1>
                         <ul class="nav nav-tabs">
                             <li class="nav-item">
-                                <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#userTable"
+                                <a class="nav-link active" id="users-table" data-bs-toggle="tab" href="#userTable"
                                    role="tab" aria-controls="home" aria-selected="true"
-                                   style="border-radius: 5px 5px 0 0;">Users table</a>
+                                   style="border-radius: 5px 5px 0 0">Users table</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#addNewUser" id="profile-tab" data-bs-toggle="tab" role="tab"
@@ -107,8 +107,6 @@
                                         <h5>Role</h5>
                                         <select id="roleToAdd" name="roleToAdd" class="form-select w-100" multiple
                                                 size="2" aria-label="multiple select example" required>
-                                            <option value="ADMIN">ADMIN</option>
-                                            <option value="USER">USER</option>
                                         </select>
                                         <div class="d-flex justify-content-center">
                                             <div class="modal-footer">
@@ -138,7 +136,7 @@
                                         <th>Role</th>
                                     </tr>
                                     </thead>
-                                    <tbody id="showInformationAboutAdmin"></tbody>
+                                    <tbody id="adminPageInfo"></tbody>
                                 </table>
                             </div>
                         </div>
@@ -259,6 +257,7 @@
 <script src="/js/tools/functions.js"></script>
 <script src="/js/tools/topBar.js"></script>
 <script src="/js/admin/usersTable.js"></script>
+<script src="/js/tools/getRoles.js"></script>
 <script src="/js/admin/addNewUser.js"></script>
 <script src="/js/admin/editUser.js"></script>
 <script src="/js/admin/deleteUser.js"></script>
