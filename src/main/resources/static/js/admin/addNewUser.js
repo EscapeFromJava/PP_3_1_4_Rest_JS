@@ -1,20 +1,20 @@
-const userFirstNameAdd = document.getElementById('userFirstNameAdd')
-const userLastNameAdd = document.getElementById('userLastNameAdd')
-const userAgeAdd = document.getElementById('userAgeAdd')
-const userEmailAdd = document.getElementById('userEmailAdd')
-const userPasswordAdd = document.getElementById('userPasswordAdd')
+const userFirstNameAdd = document.querySelector("#userFirstNameAdd")
+const userLastNameAdd = document.querySelector("#userLastNameAdd")
+const userAgeAdd = document.querySelector("#userAgeAdd")
+const userEmailAdd = document.querySelector("#userEmailAdd")
+const userPasswordAdd = document.querySelector("#userPasswordAdd")
 
-const addForm = document.querySelector('#addForm')
+const addForm = document.querySelector("#addForm")
 addForm.addEventListener('submit', (e) => {
         e.preventDefault()
 
-        let role = [...document.getElementById("roleToAdd")]
+        let role = [...document.querySelector("#roleToAdd")]
             .filter(option => option.selected)
             .map(option => option.value)
 
-        fetch(url, {
-            method: 'POST',
-            headers: {'Content-type': 'application/json'},
+        fetch(urlUsers, {
+            method: "POST",
+            headers: {"Content-type": "application/json"},
             body: JSON.stringify({
                 firstName: userFirstNameAdd.value,
                 lastName: userLastNameAdd.value,

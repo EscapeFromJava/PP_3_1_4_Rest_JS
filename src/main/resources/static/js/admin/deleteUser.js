@@ -1,34 +1,43 @@
-const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'))
+const deleteModal = new bootstrap.Modal(document.querySelector("#deleteModal"))
 
-const deleteForm = document.querySelector('#deleteForm')
-
-const userIdDelete = document.getElementById('idDelete')
-const userNameDelete = document.getElementById('nameDelete')
-const userSurnameDelete = document.getElementById('surnameDelete')
-const userUsernameDelete = document.getElementById('usernameDelete')
+const userIdDelete = document.querySelector("#idDelete")
 
 on(document, "click", ".btn-danger", e => {
+    const currentUserId = e.target.parentNode.parentNode.firstElementChild.innerHTML
+    sendRequest("GET", "/api/users/".concat(currentUserId))
+        .then(data => {
+            userIdDelete.value = data["id"]
+            document.querySelector("#firstNameDelete").value = data["firstName"]
+            document.querySelector("#lastNameDelete").value = data["lastName"]
+            document.querySelector("#ageDelete").value = data["age"]
+            document.querySelector("#emailDelete").value = data["email"]
 
-    const data = e.target.parentNode.parentNode
-    const idForm = data.firstElementChild.innerHTML
-    const nameForm = data.children[1].innerHTML
-    const surnameForm = data.children[2].innerHTML
-    const usernameForm = data.children[3].innerHTML
-    userIdDelete.value = idForm
-    userNameDelete.value = nameForm
-    userSurnameDelete.value = surnameForm
-    userUsernameDelete.value = usernameForm
-    deleteModal.show()
+            const userRolesDelete = data["roles"].map(role => role["role"])
+
+            let selectOptionRoles = ``
+            sendRequest("GET", "/api/roles")
+                .then(data => {
+                        let allRoles = data.map(el => el["role"])
+                        for (const role of allRoles) {
+                            if (userRolesDelete.includes(role)) {
+                                selectOptionRoles += `<option value="${role}" selected>${role}</option>`
+                            } else {
+                                selectOptionRoles += `<option value="${role}">${role}</option>`
+                            }
+                        }
+                        document.querySelector("#rolesDelete").innerHTML = selectOptionRoles
+                    }
+                )
+            deleteModal.show()
+        })
 })
 
-deleteForm.addEventListener('submit', (e) => {
-
+document.querySelector("#deleteForm").addEventListener("submit", (e) => {
         e.preventDefault()
-        const idToDelete = userIdDelete.value
 
-        fetch(url + idToDelete, {
-            method: 'DELETE',
-            headers: {'Content-type': 'application/json'},
+        fetch(urlUsers + userIdDelete.value, {
+            method: "DELETE",
+            headers: {"Content-type": "application/json"},
             body: JSON.stringify({})
         }).then(response => response.json()).then(response => location.reload())
         deleteModal.hide()

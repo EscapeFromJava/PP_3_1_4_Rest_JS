@@ -1,8 +1,6 @@
-const usersTable = document.querySelector("#userTableInfo")
-
-sendRequest('GET', "/api/user")
+sendRequest("GET", "/api/user")
     .then(data => {
-            usersTable.innerHTML = `
+            document.querySelector("#userTableInfo").innerHTML = `
                         <tr>
                             <td>${data["id"]}</td>
                             <td>${data["firstName"]}</td>

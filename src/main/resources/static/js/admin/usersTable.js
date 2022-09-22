@@ -1,5 +1,4 @@
-// заполняет Admin panel -> Users table
-fetch(url).then(res => {
+fetch(urlUsers).then(res => {
         res.json().then(data => {
                 let usersTableInfo = "";
                 data.forEach((user) => {

@@ -1,7 +1,6 @@
-//заполняет Admin panel -> User info table
-fetch(meUrl).then(res => {
+fetch(urlUser).then(res => {
     res.json().then(data => {
-        document.getElementById("showInformationAboutAdmin").innerHTML = `   
+        document.querySelector("#showInformationAboutAdmin").innerHTML = `   
             <tr>
                 <td>${data["id"]}</td>
                 <td>${data["firstName"]}</td>

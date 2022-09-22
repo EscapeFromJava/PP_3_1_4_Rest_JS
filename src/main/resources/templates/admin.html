@@ -121,7 +121,8 @@
                         </div>
                     </div>
                     <!--                    User information panel-->
-                    <div class="tab-pane fade p-0" id="user-pill" role="tabpanel" aria-labelledby="pills-user-tab" style="background-color: #f8f8f8">
+                    <div class="tab-pane fade p-0" id="user-pill" role="tabpanel" aria-labelledby="pills-user-tab"
+                         style="background-color: #f8f8f8">
                         <h1>User information panel</h1>
                         <div class="border rounded">
                             <h4 class="p-3 mb-0">About user</h4>
@@ -179,11 +180,11 @@
                         </div>
                         <h6>Email</h6>
                         <div class="form-group">
-                            <input type="email" class="form-control" id="emailEdit" name="emailEdit">
+                            <input type="email" class="form-control" id="emailEdit" name="emailEdit" required>
                         </div>
                         <h6>Password</h6>
                         <div class="form-group">
-                            <input type="password" class="form-control" id="passwordEdit" name="passwordEdit">
+                            <input type="password" class="form-control" id="passwordEdit" name="passwordEdit" required>
                         </div>
                         <h6>Role</h6>
                         <select id="rolesEdit" name="rolesEdit" class="form-select w-100" multiple size="2"
@@ -220,11 +221,12 @@
                         </div>
                         <h6>First Name</h6>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="nameDelete" name="nameDelete" readonly>
+                            <input type="text" class="form-control" id="firstNameDelete" name="firstNameDelete"
+                                   readonly>
                         </div>
                         <h6>Last Name</h6>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="surnameDelete" name="surnameDelete" readonly>
+                            <input type="text" class="form-control" id="lastNameDelete" name="lastNameDelete" readonly>
                         </div>
                         <h6>Age</h6>
                         <div class="form-group">
@@ -232,13 +234,11 @@
                         </div>
                         <h6>Email</h6>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="usernameDelete" name="usernameDelete" readonly>
+                            <input type="text" class="form-control" id="emailDelete" name="emailDelete" readonly>
                         </div>
                         <h6>Role</h6>
-                        <select class="form-select w-100" multiple size="2" aria-label="multiple select example"
-                                disabled>
-                            <option>ADMIN</option>
-                            <option>USER</option>
+                        <select id="rolesDelete" name="rolesDelete" class="form-select w-100" multiple size="2"
+                                aria-label="multiple select example" disabled>
                         </select>
                     </div>
                     <div class="modal-footer">
@@ -251,11 +251,9 @@
     </div>
 </div>
 
-<script src="/js/libs/bootstrap4/jquery.min.js"></script>
-<script src="http://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
-<script src="/js/libs/bootstrap5/bootstrap.min.js"></script>
-
-<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 
 <script src="/js/tools/urls.js"></script>
 <script src="/js/tools/functions.js"></script>
