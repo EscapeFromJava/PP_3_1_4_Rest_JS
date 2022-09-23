@@ -39,8 +39,9 @@ document.querySelector("#deleteForm").addEventListener("submit", (e) => {
             method: "DELETE",
             headers: {"Content-type": "application/json"},
             body: JSON.stringify({})
-        }).then(response => response.json()).then(response => location.reload())
-        deleteModal.hide()
-        document.location.reload();
+        }).then(() => {
+            deleteModal.hide()
+            printUsersTable()
+        })
     }
 )

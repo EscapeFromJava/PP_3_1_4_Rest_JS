@@ -26,6 +26,11 @@ public class AdminRestController {
         return userService.getAllUsers();
     }
 
+    @GetMapping("/user")
+    public User getUserById(Principal principal) {
+        return userService.findUserByEmail(principal.getName());
+    }
+
     @GetMapping("/roles")
     public List<Role> getAllRoles() {
         return roleService.getRoles();

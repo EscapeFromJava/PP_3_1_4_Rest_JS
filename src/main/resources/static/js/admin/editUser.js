@@ -58,7 +58,10 @@ document.querySelector("#editForm").addEventListener("submit", (e) => {
                 password: userPassword.value,
                 roles: role
             })
-        }).then(response => response.json()).then(response => location.reload())
-        editModal.hide()
+        }).then(() => {
+            editModal.hide()
+            printUsersTable()
+            adminInfo()
+        })
     }
 )
